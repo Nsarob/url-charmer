@@ -17,7 +17,7 @@ The application is divided into two main parts:
 
 1. **Navigate to the Front-end Directory**:
    ```sh
-   cd url-shortener-frontend
+   cd src
 
 2. **Install Dependencies**:
    ```sh
@@ -27,7 +27,7 @@ The application is divided into two main parts:
 
 The front-end server will start on http://localhost:5173/
 
-### Back-end (Node.js Proxy Server)
+### Back-end (Node.js Server)
 
 1. **Navigate to the Proxy Server Directory**:
    ```sh
