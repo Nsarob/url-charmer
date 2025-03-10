@@ -1,7 +1,3 @@
-# url-charmer
-This is a backend scalable URL Shortener tool
-
-
 # Url-charmer
 Url-charmer V1
 Url shortner for any users.
