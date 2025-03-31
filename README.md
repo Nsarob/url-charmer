@@ -1,44 +1,102 @@
-# Url-charmer
-Url-charmer V1
-Url shortner for any users.
+# URL Shortener Application
 
-## Overview
-The application is divided into two main parts:
-- **Front-end**: Located in (https://github.com/Nsarob/frontend-url-charmer.git), this part of the application is built using React and handles the user interface.
-- **url-charmer**: Located in the `url-charmer` folder, this part of the application acts as a backend server, handling server-side logic for the demo feature. The backend is built using Node.js.
+A modern URL shortening service built with TypeScript, Express, and PostgreSQL that allows users to create and manage shortened URLs with analytics.
 
-## Running the Application
+
+## 📚 Table of Contents
+
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Local Setup](#local-setup)
+- [Docker Setup](#docker-setup)
+- [Environment Variables](#environment-variables)
+
+## ✨ Features
+
+- Create shortened URLs with custom titles
+- User authentication and registration
+- Track click analytics for each URL
+- User dashboard with URL management
+- JWT-based authentication
+
+## 🛠️ Tech Stack
+
+- **Backend**: Node.js, Express, TypeScript
+- **Database**: PostgreSQL
+- **ORM**: Sequelize
+- **Authentication**: JWT, Passport
+- **Containerization**: Docker
+
+## 💻 Local Setup
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- npm (v6 or higher)
 
-### Front-end (React Application)
+- Node.js (v14+)
+- npm or yarn
+- PostgreSQL
 
-1. **Navigate to the Front-end Directory**:
-   ```sh
-   cd src
+### Installation Steps
 
-2. **Install Dependencies**:
-   ```sh
-   npm install
+1. **Clone the repository**
+```bash
+git clone https://github.com/Nsarob/url-charmer.git
+cd url-charmer
+```
 
-3. **Start the Front-end Server**:
+2. **Install dependencies**
+```bash
+npm install
+# or
+yarn install
+```
 
-The front-end server will start on http://localhost:5173/
+3. **Set up environment variables**
 
-### Back-end (Node.js Server)
+Create a `.env` file in the root directory and add the following variables:
+```
+DATABASE_URL=your_postgresql_database_url
+JWT_SECRET=your_jwt_secret
+```
 
-1. **Navigate to the Proxy Server Directory**:
-   ```sh
-   cd url-charmer
+4. **Run database migrations**
+```bash
+npx sequelize-cli db:migrate
+```
 
-2. **Install Dependencies**:
-   ```sh
-   npm install 
+5. **Start the development server**
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-3. **Start the Back-end Server**:
-   ```sh
-   node server.js 
+The server should now be running at `http://localhost:3000`.
 
-The back-end server will start on http://localhost:5000.
+## 🐳 Docker Setup
+
+### Prerequisites
+
+- Docker
+- Docker Compose
+
+### Steps
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/Nsarob/url-charmer.git
+cd url-charmer
+```
+
+2. **Build and run the Docker containers**
+```bash
+docker-compose up --build
+```
+
+The application should now be running at `http://localhost:3000`.
+
+## 🔧 Environment Variables
+
+The following environment variables need to be set in the `.env` file:
+
+- `DATABASE_URL`: The URL of your PostgreSQL database
+- `JWT_SECRET`: The secret key for JWT authentication

@@ -1,0 +1,67 @@
+version: '3.8'
+services:
+  app:
+    container_name: Talent-O-Dev-API
+    image: node:20-alpine 
+    working_dir: /usr/src/app
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      APP_PORT: ${APP_PORT}
+      DB_HOST_LIVE: ${DB_HOST_LIVE}
+      DB_DIALECT: ${DB_DIALECT}
+      POOL_MAX: ${POOL_MAX}
+      POOL_IDLE: ${POOL_IDLE}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      CALLBACKURL: ${CALLBACKURL}
+      LINKEDIN_CLIENT_ID: ${LINKEDIN_CLIENT_ID}
+      LINKEDIN_CLIENT_SECRET: ${LINKEDIN_CLIENT_SECRET}
+      LINKEDIN_CALLBACKURL: ${LINKEDIN_CALLBACKURL}
+      SESSION_SECRET: ${SESSION_SECRET}
+      NODE_ENV: development
+      JWT_SECRET: ${JWT_SECRET}
+      FRONTEND_URL: ${FRONTEND_URL}
+    ports:
+      - "${APP_PORT}:${APP_PORT}" 
+    volumes:
+      - ./:/usr/src/app 
+      # - /usr/src/app/node_modules # This ensures node_modules in the container are not overwritten
+    command: >
+      /bin/sh -c "
+      corepack enable && corepack prepare yarn@4.3.1 --activate &&
+      yarn dev"
+    depends_on:
+      - db
+    restart: unless-stopped
+  db:
+    container_name: Talent-O-Dev-Database
+    image: postgres
+    hostname: localhost
+    ports:
+      - "5433"
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: container-pgadmin
+    image: dpage/pgadmin4
+    depends_on:
+      - db
+    ports:
+      - "5052:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
