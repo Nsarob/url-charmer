@@ -71,32 +71,3 @@ yarn dev
 ```
 
 The server should now be running at `http://localhost:3000`.
-
-## 🐳 Docker Setup
-
-### Prerequisites
-
-- Docker
-- Docker Compose
-
-### Steps
-
-1. **Clone the repository**
-```bash
-git clone https://github.com/Nsarob/url-charmer.git
-cd url-charmer
-```
-
-2. **Build and run the Docker containers**
-```bash
-docker-compose up --build
-```
-
-The application should now be running at `http://localhost:3000`.
-
-## 🔧 Environment Variables
-
-The following environment variables need to be set in the `.env` file:
-
-- `DATABASE_URL`: The URL of your PostgreSQL database
-- `JWT_SECRET`: The secret key for JWT authentication
